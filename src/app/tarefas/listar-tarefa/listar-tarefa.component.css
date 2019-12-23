@@ -1,0 +1,19 @@
+tr{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+tr td, th{
+    padding: 1%;
+}
+.btn {
+    margin: 1.5%;
+}
+.success{
+    background: #cce5ff;
+    border-color: #b8daff;
+    color: #004085;
+}
+.success:hover, .aux:hover{
+    background: rgba(0, 0, 0, 0.1);
+    border-color: #b8daff;
+    color: #004085;
+}

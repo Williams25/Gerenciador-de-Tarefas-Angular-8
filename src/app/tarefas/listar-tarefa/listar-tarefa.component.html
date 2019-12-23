@@ -1,36 +1,43 @@
 <h1>Tarefas</h1>
 
 <table class="table table-striped table-bordered table-hover">
-	<tr>
+	<tr class="well">
 		<th>Tarefa</th>
 		<th>Concluída</th>
 		<th class="text-center">
-			<a class="btn btn-xs btn-success">
-				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Novo
+			<a class="btn btn-xs btn-success"
+				[routerLink]="['/tarefas/cadastrar']" routerLinkActive="router-link-active" >
+				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 
+				Novo
 			</a>
 		</th>
 	</tr>
 
 
-	<tr *ngFor="let tarefa of tarefas">
-		<td [class.btn-warning]="!tarefa.concluida">
+	<tr *ngFor="let tarefa of tarefas" 
+		[class.success]="tarefa.concluida" class="aux">
+		<td [tarefaConcluida]="tarefa.concluida">
 			{{ tarefa.nome }}
 		</td>
 
 		<td style="width: 70px" class="text-center">
 			<input type="checkbox" 
 				[value]="tarefa.id" 
-				[checked]="tarefa.concluida">
+				[checked]="tarefa.concluida"
+				(click)="alterarStatus(tarefa)">
 		</td>
 		<td class="text-center" style="width: 200px">
-			<a title="Editar" alt="Editar" class="btn btn-xs btn-info">
+			<a [routerLink]="['/tarefas/editar', tarefa.id]" routerLinkActive="router-link-active"  title="Editar"
+				alt="Editar" class="btn btn-xs btn-info">
 				<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar
 			</a>
-			<a href="#" title="Remover" alt="Remover" class="btn btn-xs btn-danger">
+			<a (click)="remover($event, tarefa)"
+				title="Remover" 
+				alt="Remover" 
+				class="btn btn-xs btn-danger"> 
 				<span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Remover
 			</a>
 		</td>
 	</tr>
 </table>
-
 <p *ngIf="tarefas.length == 0">Nenhuma tarefa cadastrada.</p>
